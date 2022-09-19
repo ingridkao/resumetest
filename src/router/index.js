@@ -2,6 +2,10 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ShopView from '../views/ShopView.vue'
 
+import Featrue from '../views/FeatrueView.vue'
+import FeatrueImageZoom from '../views/featrue/ImageZoom.vue'
+import FeatrueImageZoomLib from '../views/featrue/ImageZoomLib.vue'
+
 const routes = [
   {
     path: '/',
@@ -20,6 +24,15 @@ const routes = [
     // this generates a separate chunk (about.[hash].js) for this route
     // which is lazy-loaded when the route is visited.
     component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  },
+  {
+    path: '/featrue',
+    name: 'featrue',
+    component: Featrue,
+    children: [
+      { path: 'imageZoom', component: FeatrueImageZoom },
+      { path: 'imageZoomLib', component: FeatrueImageZoomLib }
+    ],
   }
 ]
 

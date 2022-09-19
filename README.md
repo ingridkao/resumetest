@@ -1,5 +1,6 @@
-# resume202209
+# resumetest
 
+[DEMO](https://ingridkao.github.io/resumetest/)
 ## Project setup
 ```
 npm install
@@ -14,6 +15,3 @@ npm run serve
 ```
 npm run build
 ```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
