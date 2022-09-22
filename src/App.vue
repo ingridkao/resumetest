@@ -5,6 +5,7 @@
     <router-link to="/shop">新增的一頁</router-link> | 
     <router-link to="/featrue">功能</router-link> |
     <router-link to="/calendar">日曆</router-link> |
+    <router-link to="/scroll">scroll事件</router-link> |
   </nav>
   <router-view/>
 </template>

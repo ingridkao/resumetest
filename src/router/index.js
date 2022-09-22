@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '../views/HomeView.vue'
 import ShopView from '../views/ShopView.vue'
 import CalendarView from '../views/CalendarView.vue'
+import ScrollView from '../views/ScrollView.vue'
 
 import Featrue from '../views/FeatrueView.vue'
 import FeatrueImageZoom from '../views/featrue/ImageZoom.vue'
@@ -22,6 +23,11 @@ const routes = [
     path: '/calendar',
     name: 'calendar',
     component: CalendarView
+  },
+  {
+    path: '/scroll',
+    name: 'scroll',
+    component: ScrollView
   },
   {
     path: '/about',
