@@ -1,16 +1,6 @@
 <template>
   <div class="shop">
-    <h1>This is an shop page</h1>
-    <h2>Product: {{$route.params.productID}}</h2>
-    <!-- <nav>
-      <template v-for="item in 5" :key="item">
-        <router-link :to="`/shop/${item}`">/shop/{{item}}</router-link> | 
-      </template>
-    </nav> -->
-    <router-view></router-view>
-
-
-    <!-- {{num}}
+    {{num}}
     <el-button @click="add">Default</el-button>
     <hr>
     <el-date-picker
@@ -19,8 +9,7 @@
       placeholder="Pick a day"
     />
     {{value1}}
-    
-    <ImageItem/> -->
+    <ImageItem/>
   </div>
 </template>
 <script>

@@ -4,19 +4,26 @@ import ShopView from '../views/ShopView.vue'
 import CalendarView from '../views/CalendarView.vue'
 import ScrollView from '../views/ScrollView.vue'
 
-import Featrue from '../views/FeatrueView.vue'
-import FeatrueImageZoom from '../views/featrue/ImageZoom.vue'
-import FeatrueImageZoomLib from '../views/featrue/ImageZoomLib.vue'
+import NotFound from '../views/NotFound.vue'
 
-const routes = [
+import Featrue from '../views/featrue/Index.vue'
+import FeatrueImageZoom from '../views/featrue/ImageZoom.vue'
+import FeatrueImageImport from '../views/featrue/ImageImport.vue'
+import FeatrueElement from '../views/featrue/Element.vue'
+
+export const routes = [
   {
     path: '/',
     name: 'home',
+    chName: '首頁',
     component: HomeView
   },
   {
-    path: '/shop',
+    // path: '/shop',
+    // path: '/shop/:productID',
+    path: '/shop/:productID(\\d+)',
     name: 'shop',
+    chName: '111',
     component: ShopView
   },
   {
@@ -43,8 +50,12 @@ const routes = [
     component: Featrue,
     children: [
       { path: 'imageZoom', component: FeatrueImageZoom },
-      { path: 'imageZoomLib', component: FeatrueImageZoomLib }
+      { path: 'imageImport', component: FeatrueImageImport },
+      { path: 'element', component: FeatrueElement }
     ],
+  },
+  {
+    path: '/:pathMatch(.*)*', name: '404', component: NotFound
   }
 ]
 

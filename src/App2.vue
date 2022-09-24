@@ -1,19 +1,19 @@
 <template>
   <nav>
-    <router-link 
-      v-for="item in pageRoutes"
-      :key="item.path"
-      :to="item.path"
-    >
-      {{item.chName? item.chName: item.name }}
-    </router-link> |
-    <!-- <router-link to="/about">About</router-link> |
+    <!-- <router-link to="/">Home</router-link> | -->
+    <router-link :to="{name: 'home'}">Home</router-link> |
+
+    <router-link to="/about">About</router-link> |
+    <!-- <router-link to="/shop">route說明(shop)</router-link> |  -->
     <router-link to="/calendar">日曆</router-link> |
     <router-link to="/scroll">scroll事件</router-link> |
-    <router-link to="/featrue">圖片相關</router-link> | -->
+
+    <!-- <router-link to="/featrue">圖片相關</router-link> | -->
+    <!-- <router-link :to="{ path: '/featrue'}">圖片相關</router-link> | -->
+    <router-link :to="{ name: 'featrue'}">圖片相關</router-link> |
   </nav>
 
-  <!-- <nav>
+  <nav>
     <template v-for="item in 5" :key="item">
       <router-link :to="`/shop/${item}`">/shop/{{item}}</router-link> | 
     </template>
@@ -21,33 +21,9 @@
       name: 'shop',
       params: {productID: '123'}
     }">/shop/123</router-link> | 
-  </nav> -->
+  </nav>
   <router-view/>
 </template>
-
-<script>
-import {routes} from '@/router/index.js'
-console.log(routes);
-export default {
-  data(){
-    return {
-      // routes: routes
-      //省略寫法
-      routes,
-    }
-  },
-  computed:{
-    pageRoutes(){
-      // const route = this.routes.filter(item => {
-      //   console.log(item);
-      //   return item.name !== "404"
-      // })
-      const route = this.routes.filter(item => item.name !== "404")
-      return route
-    }
-  }
-}
-</script>
 
 <style lang="scss">
 #app {
@@ -63,7 +39,6 @@ nav {
   a {
     font-weight: bold;
     color: #2c3e50;
-    margin-right: .5rem;
     //模糊比對
     &.router-link-active {
       color: #4279b9;
