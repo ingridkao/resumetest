@@ -5,7 +5,7 @@
         <!-- <p>{{target}}</p> -->
         <select v-model="target" @change="chnageSelect">
             <option 
-                v-for="(item) in data3" 
+                v-for="(item) in data" 
                 :key="item.ScenicSpotID"
                 :value="item.ScenicSpotID"
             >
@@ -22,6 +22,16 @@
 <script>
 import L from "leaflet"
 import "leaflet/dist/leaflet.css"
+
+// marker的樣式
+const blackIcon = new L.Icon({
+  iconUrl: 'https://cdn.rawgit.com/pointhi/leaflet-color-markers/master/img/marker-icon-2x-black.png',
+  shadowUrl: 'https://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.7/images/marker-shadow.png',
+  iconSize: [25, 41],
+  iconAnchor: [12, 41],
+  popupAnchor: [1, -34],
+  shadowSize: [41, 41]
+})
 
 export default {
     data(){
@@ -43,8 +53,11 @@ export default {
             this.info = this.data.find(item=> item.ScenicSpotID === this.target)
             const pos = this.info.Position
             if(!pos) return
-            this.map.setView([pos.PositionLat, pos.PositionLon], 15)
+            // this.map.setView([pos.PositionLat, pos.PositionLon], 15)
+
             // L.marker([51.5, -0.09]).addTo(map)
+            L.marker([pos.PositionLat, pos.PositionLon],{ icon: blackIcon }).addTo(this.map)
+
             //     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
             //     .openPopup();
         },
