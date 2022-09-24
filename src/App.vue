@@ -1,4 +1,5 @@
 <template>
+  <header>Header</header>
   <nav>
     <router-link 
       v-for="item in pageRoutes"
@@ -12,7 +13,26 @@
     <router-link to="/scroll">scroll事件</router-link> |
     <router-link to="/featrue">圖片相關</router-link> | -->
   </nav>
-
+  <nav>
+    <!-- <router-link :to="{
+      name: 'shop',
+      params: {
+        productID: 1
+      }
+    }">商品1</router-link> -->
+    <router-link 
+      v-for="item in 10"
+      :key="item"
+      :to="{
+        name: 'shop',
+        params: {
+          productID: item
+        }
+      }"
+    >
+      商品{{item }}
+    </router-link>
+  </nav>
   <!-- <nav>
     <template v-for="item in 5" :key="item">
       <router-link :to="`/shop/${item}`">/shop/{{item}}</router-link> | 
@@ -23,11 +43,11 @@
     }">/shop/123</router-link> | 
   </nav> -->
   <router-view/>
+  <footer>Footer</footer>
 </template>
 
 <script>
 import {routes} from '@/router/index.js'
-console.log(routes);
 export default {
   data(){
     return {

@@ -23,7 +23,7 @@ export const routes = [
     // path: '/shop/:productID',
     path: '/shop/:productID(\\d+)',
     name: 'shop',
-    chName: '111',
+    chName: '商品',
     component: ShopView
   },
   {

@@ -26,7 +26,9 @@
         <FullCalendar :options="calendarOptions2" />
         <p>點擊的日期：{{clickDate}}</p>
 
+        <ScrollToTopBtn/>
     </div>
+
 </template>
 
 <script>
@@ -35,10 +37,13 @@ import FullCalendar from '@fullcalendar/vue3'
 import dayGridPlugin from '@fullcalendar/daygrid'
 import interactionPlugin from '@fullcalendar/interaction'
 
+import ScrollToTopBtn from '@/components/ScrollTo.vue'
+
 // 官方提供範例： https://fullcalendar.io/docs/date-clicking-selecting-demo
 export default {
     components: {
-        FullCalendar
+        FullCalendar,
+        ScrollToTopBtn
     },
     data(){
         return {
@@ -127,6 +132,7 @@ export default {
 
 <style lang="scss">
 .fullCalendarContainer{
+    position: relative;
     text-align: left;
 }
 </style>

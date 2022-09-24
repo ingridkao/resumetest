@@ -7,7 +7,7 @@
         <router-link :to="`/shop/${item}`">/shop/{{item}}</router-link> | 
       </template>
     </nav> -->
-    <router-view></router-view>
+    <!-- <router-view></router-view> -->
 
 
     <!-- {{num}}
