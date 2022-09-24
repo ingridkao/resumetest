@@ -1,9 +1,9 @@
 <template>
     <div>
-        <h6>TDX Get</h6>
         <div v-if="load">Load</div>
         <!-- <p>{{target}}</p> -->
         <select v-model="target" @change="chnageSelect">
+            <option value="">請選擇桃園景點</option>
             <option 
                 v-for="(item) in data" 
                 :key="item.ScenicSpotID"
@@ -12,10 +12,19 @@
                 {{item.ScenicSpotName}}
             </option>
         </select>
-        <div>
+        <hr>
+        <div class="infoBox">
             <!-- {{info.Position}} -->
             <div id="map"></div>
-            {{info}}
+            <div class="info">
+                <template v-for="(item, keys) in info" :key="keys">
+                    <h6 v-if="keys === 'ScenicSpotName'">{{item}}</h6>
+                    <p v-else-if="keys === 'Description'" class="Description">{{item}}</p>
+                    <p v-else-if="keys === 'Address'">地址： {{item}}</p>
+                    <p v-else-if="keys === 'Phone'">電話： {{item}}</p>
+                    <p v-else-if="keys === 'TicketInfo'">收費： {{item}}</p>
+                </template>
+            </div>
         </div>
     </div>
 </template>
@@ -40,7 +49,8 @@ export default {
             data:[],
             target: '',
             info: {},
-            map: null
+            map: null,
+            marker: null
         }
     },
     components: {},
@@ -53,13 +63,16 @@ export default {
             this.info = this.data.find(item=> item.ScenicSpotID === this.target)
             const pos = this.info.Position
             if(!pos) return
-            // this.map.setView([pos.PositionLat, pos.PositionLon], 15)
+            this.map.setView([pos.PositionLat, pos.PositionLon], 12)
 
             // L.marker([51.5, -0.09]).addTo(map)
-            L.marker([pos.PositionLat, pos.PositionLon],{ icon: blackIcon }).addTo(this.map)
+            // 這個寫法會新增很多marker，要想辦法把上一個消雕
+            // L.marker([pos.PositionLat, pos.PositionLon],{ icon: blackIcon }).addTo(this.map)
 
-            //     .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-            //     .openPopup();
+            if(this.marker){
+                this.map.removeLayer(this.marker)
+            }
+            this.marker = L.marker([pos.PositionLat, pos.PositionLon],{ icon: blackIcon }).addTo(this.map)
         },
         getData(){
             this.load= true
@@ -97,8 +110,18 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-#map{
+.infoBox{
+    display: inline-flex;
     width: 100%;
-    height: 20rem;
+    height: 50vh;
+    #map{
+        width: 20rem;
+        height: 100%;
+    }
+    .info{
+        width: calc(100vw - 20rem);
+        text-align: left;
+    }
 }
+
 </style>
