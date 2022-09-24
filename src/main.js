@@ -20,5 +20,7 @@ app.use(ElementPlus)
 
 app.use(store)
 app.use(router)
+
 app.config.globalProperties.axios=axios
+
 app.mount('#app')
