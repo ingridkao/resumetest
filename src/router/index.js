@@ -3,6 +3,7 @@ import HomeView from '../views/HomeView.vue'
 import ShopView from '../views/ShopView.vue'
 import CalendarView from '../views/CalendarView.vue'
 import ScrollView from '../views/ScrollView.vue'
+import AjaxView from '@/views/AjaxView.vue'
 
 import NotFound from '../views/NotFound.vue'
 
@@ -35,6 +36,11 @@ export const routes = [
     path: '/scroll',
     name: 'scroll',
     component: ScrollView
+  },
+  {
+    path: '/ajax',
+    name: 'ajax',
+    component: AjaxView
   },
   {
     path: '/about',

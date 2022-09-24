@@ -1,5 +1,5 @@
 <template>
-  <header>Header</header>
+  <MainHeader/>
   <nav>
     <router-link 
       v-for="item in pageRoutes"
@@ -47,8 +47,12 @@
 </template>
 
 <script>
+import MainHeader from '@/components/layout/MainHeader.vue'
 import {routes} from '@/router/index.js'
 export default {
+  components: {
+    MainHeader: MainHeader
+  },
   data(){
     return {
       // routes: routes
