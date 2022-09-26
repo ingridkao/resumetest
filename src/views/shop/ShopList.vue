@@ -1,33 +1,38 @@
 <template>
-	<div class="shop">
-		<nav v-if="!load">
-			<router-link 
+	<div >
+		<nav>
+			<router-link :to="{name: 'home'}">首頁</router-link>
+		</nav>
+		<div v-if="load">Loading...</div>
+		<div  v-else class="shopList">
+			<div
 				v-for="item in listData"
 				:key="item.id"
-				:to="{
-					name: 'shop',
-					params: {
-						productID: item.id
-					}
-				}"
+				class="shopCard"
 			>
-				{{item.title }}
-			</router-link>
-		</nav>
-		<h2>Product: {{$route.params.productID}}</h2>
+				<img :src="item.thumbnail" :alt="item.title">
+				<router-link 
+					:to="{
+						name: 'shopInfo',
+						params: {
+							productID: item.id
+						}
+					}"
+				>
+					{{item.title }}
+				</router-link>
+				<p>{{item.description}}</p>
+				<p>${{item.price}}</p>
+			</div>
+		</div>
 	</div>
 </template>
 <script>
-import ImageItem from '@/components/ImageItem.vue'
 export default {
-    components: {
-      	ImageItem
-    },
     data(){
 		return {
 			load: false,
-			listData: [],
-			target: null
+			listData: []
 		}
     },
     methods:{
@@ -53,3 +58,15 @@ export default {
     }
 }
 </script>
+
+<style lang="scss" scoped>
+.shopList{
+	display: inline-flex;
+	.shopCard{
+		width: 30%;
+		img{
+			width: 100%;
+		}
+	}
+}
+</style>
