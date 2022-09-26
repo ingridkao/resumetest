@@ -4,7 +4,7 @@ import CalendarView from '@/views/CalendarView.vue'
 import ScrollView from '@/views/ScrollView.vue'
 import AjaxView from '@/views/AjaxView.vue'
 import TdxView from '@/views/TdxView.vue'
-import MapView from '@/views/MapView.vue'
+import Tdx2View from '@/views/Tdx2View.vue'
 
 import NotFound from '@/views/NotFound.vue'
 
@@ -71,10 +71,10 @@ export const routes = [
     component: TdxView
   },
   {
-    path: '/map',
-    name: 'map',
-    chName: '多筆資料顯示在地圖',
-    component: MapView
+    path: '/tdx2',
+    name: 'tdx2',
+    chName: 'Tdx API取得並顯示在地圖2',
+    component: Tdx2View
   },
   {
     path: '/about',
