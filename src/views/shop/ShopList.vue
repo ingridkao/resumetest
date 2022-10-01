@@ -23,8 +23,24 @@
 				</router-link>
 				<p>{{item.description}}</p>
 				<p>${{item.price}}</p>
+				<div>
+					<button @click="add(item.id)"> + </button>
+					<input type="number" v-model="cart[item.id]['count']">
+					<button @click="reduse(item.id)"> - </button>
+				</div>
 			</div>
 		</div>
+
+		<aside>
+			<h6>購物車</h6>
+			<ul>
+				<li v-for="(cartItem, cartKey) in displayCart" :key="cartKey">
+					{{cartItem.name}}
+					${{cartItem.price}}
+					X{{cartItem.count}}
+				</li>
+			</ul>
+		</aside>
 	</div>
 </template>
 <script>
@@ -32,9 +48,15 @@ export default {
     data(){
 		return {
 			load: false,
-			listData: []
+			listData: [],
+			cart: {}
 		}
     },
+	computed: {
+		displayCart(){
+			return Object.values(this.cart).filter(item => item.count > 0)
+		}
+	},
     methods:{
         getListData(){
             this.load= true
@@ -43,6 +65,13 @@ export default {
             .then((response) => {
 				if(response.data && response.data.products){
 					this.listData = response.data.products
+					this.listData.map(item => {
+						this.cart[item.id] = {
+							name: item.title,
+							price: item.price,
+							count: 0
+						}
+					})
 				}
             })
             .catch((error) => {
@@ -51,6 +80,13 @@ export default {
             .finally(() =>{
                 this.load = false
             })
+        },
+        add(id){
+			this.cart[id]['count'] += 1
+        },
+        reduse(id){
+			if(this.cart[id]['count'] === 0)return
+			this.cart[id]['count'] -= 1
         }
     },
     mounted(){
