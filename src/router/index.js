@@ -1,5 +1,8 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import HomeView from '@/views/HomeView.vue'
+import FrontView from '@/views/FrontView.vue'
+import BackView from '@/views/BackView.vue'
+
 import CalendarView from '@/views/CalendarView.vue'
 import ScrollView from '@/views/ScrollView.vue'
 import AjaxView from '@/views/AjaxView.vue'
@@ -18,16 +21,9 @@ import ShopView from '@/views/shop/Index.vue'
 import ShopList from '@/views/shop/ShopList.vue'
 import ShopInfo from '@/views/shop/ShopInfo.vue'
 
-export const routes = [
+export const BackRoute = []
+export const FrontRoute = [
   {
-    path: '/',
-    name: 'home',
-    chName: '首頁',
-    component: HomeView
-  },
-  {
-    // path: '/shop',
-    // path: '/shop/:productID',
     path: '/shop',
     name: 'shop',
     chName: '商品',
@@ -77,14 +73,6 @@ export const routes = [
     component: Tdx2View
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
-  },
-  {
     path: '/featrue',
     name: 'featrue',
     chName: '功能',
@@ -95,6 +83,34 @@ export const routes = [
       { path: 'element', component: FeatrueElement }
     ],
   },
+  {
+    path: '/about',
+    name: 'about',
+    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+  }
+]
+
+export const routes = [
+  {
+    path: '/',
+    name: 'home',
+    chName: '首頁',
+    component: HomeView
+  },
+  {
+    path: '/home',
+    name: 'frontpage',
+    chName: '首頁',
+    component: FrontView
+  },
+  {
+    path: '/backstage',
+    name: 'backpage',
+    chName: '後台首頁',
+    component: BackView
+  },
+  ...FrontRoute,
+  ...BackRoute,
   {
     path: '/:pathMatch(.*)*', name: '404', component: NotFound
   }

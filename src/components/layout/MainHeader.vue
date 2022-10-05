@@ -15,13 +15,13 @@
 </template>
 
 <script>
-import {routes} from '@/router/index.js'
+import {FrontRoute} from '@/router/index.js'
 export default {
   data(){
     return {
       // routes: routes
       //省略寫法
-      routes,
+      routes: FrontRoute,
     }
   },
   computed:{
