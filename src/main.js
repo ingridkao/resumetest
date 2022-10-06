@@ -20,6 +20,10 @@ import { faUserSecret, faSearch, faClone, faList, faFilter, faMagnifyingGlass } 
 /* add icons to the library */
 library.add(faUserSecret, faSearch, faClone, faList, faFilter, faMagnifyingGlass)
 
+import Header from '@/components/layout/Header.vue'
+
+
+
 
 const app = createApp(App)
 
@@ -31,6 +35,7 @@ app.use(router)
 // app.use(store)
 
 app.component('font-awesome-icon', FontAwesomeIcon)
+app.component('MainLogo', Header)
 
 app.config.globalProperties.axios=axios
 app.mount('#app')
