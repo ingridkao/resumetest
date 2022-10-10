@@ -7,6 +7,7 @@ import LoginView from '@/views/LoginView.vue'
 import RegisterView from '@/views/RegisterView.vue'
 import AdminView from '@/views/AdminView.vue'
 
+import SlotView from '@/views/SlotView.vue'
 import CalendarView from '@/views/CalendarView.vue'
 import ScrollView from '@/views/ScrollView.vue'
 import AjaxView from '@/views/AjaxView.vue'
@@ -45,6 +46,12 @@ export const BackRoute = [
   }
 ]
 export const FrontRoute = [
+  {
+    path: '/slot',
+    name: 'slot',
+    chName: 'Slot',
+    component: SlotView
+  },
   {
     path: '/shop',
     name: 'shop',
