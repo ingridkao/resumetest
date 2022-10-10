@@ -4,6 +4,5 @@ module.exports = defineConfig({
   //https://cli.vuejs.org/config/#outputdir
   publicPath: process.env.NODE_ENV === 'production'
     ? '/resumetest/'
-    : '/',
-  outputDir: 'resumetest'
-})
+    : '/'
+  })

@@ -24,5 +24,5 @@ git commit -m 'Deploy 20221010'
 
 git checkout -b github-pages
 git remote add origin https://github.com/ingridkao/resumetest.git
-git push -f https://<GitHub Personal access tokens>@github.com/ingridkao/resumetest.git
+git push -f https://<GitHub Personal access tokens>@github.com/ingridkao/resumetest.git master:github-pages
 cd -
