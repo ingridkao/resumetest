@@ -1,19 +1,26 @@
 <template>
   <div class="home backstage">
-    <MainLogo/>
     BackView
+    <nav>
+      <router-link 
+        v-for="item in routes"
+        :key="item.path"
+        :to="item.path"
+      >
+          {{item.chName? item.chName: item.name }}
+      </router-link> |
+  </nav>
   </div>
 </template>
 
 <script>
+import {BackRoute} from '@/router/index.js'
+
 export default {
-  components: {
-  },
   data(){
     return {
+      routes: BackRoute
     }
-  },
-  methods:{
   }
 }
 </script>

@@ -3,6 +3,10 @@ import HomeView from '@/views/HomeView.vue'
 import FrontView from '@/views/FrontView.vue'
 import BackView from '@/views/BackView.vue'
 
+import LoginView from '@/views/LoginView.vue'
+import RegisterView from '@/views/RegisterView.vue'
+import AdminView from '@/views/AdminView.vue'
+
 import CalendarView from '@/views/CalendarView.vue'
 import ScrollView from '@/views/ScrollView.vue'
 import AjaxView from '@/views/AjaxView.vue'
@@ -21,7 +25,25 @@ import ShopView from '@/views/shop/Index.vue'
 import ShopList from '@/views/shop/ShopList.vue'
 import ShopInfo from '@/views/shop/ShopInfo.vue'
 
-export const BackRoute = []
+export const BackRoute = [
+  {
+    path: '/login',
+    name: 'login',
+    chName: '登入',
+    component: LoginView
+  },
+  {
+    path: '/register',
+    name: 'register',
+    chName: '註冊',
+    component: RegisterView
+  },
+  {
+    path: '/admin',
+    name: 'admin',
+    component: AdminView
+  }
+]
 export const FrontRoute = [
   {
     path: '/shop',
