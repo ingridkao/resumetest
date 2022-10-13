@@ -6,17 +6,16 @@
 		<div v-if="load">Loading...</div>
 		<div  v-else class="shopList">
 			<div
-				v-for="(item, index) in listData"
+				v-for="(item, shopIndex) in listData"
 				:key="item.id"
 				class="shopCard"
 			>
-				<!-- <img :src="item.thumbnail" :alt="item.title"> -->
 				<div class="slideBox">
-					<button @click="imgPrev(index, item.images.length)">L</button>
+					<button @click="imgPrev(shopIndex, item.images.length)">L</button>
 					<div class="imgContanier">
 						<div 
 							class="imgBox"
-							:style="slideImg(index)"
+							:style="slideImg(shopIndex)"
 						>
 							<div
 								v-for="(imgItem, imgIndex) in item.images"
@@ -27,7 +26,7 @@
 							></div>
 						</div>
 					</div>
-					<button @click="imgNext(index, item.images.length)">R</button>
+					<button @click="imgNext(shopIndex, item.images.length)">R</button>
 				</div>
 				<router-link 
 					:to="{
@@ -67,7 +66,7 @@ export default {
 		return {
 			load: false,
 			listData: [],
-			slideImgActive: [],
+			slideImgActive: [], //記錄所有小圖順序
 			cart: {}
 		}
     },
@@ -91,6 +90,7 @@ export default {
 							count: 0,
 							slide: 0
 						}
+						//記錄所有小圖順序，預設為0 -> [0,0,0,0, ....]
 						this.slideImgActive.push(0)
 					})
 				}
@@ -109,23 +109,27 @@ export default {
 			if(this.cart[id]['count'] === 0)return
 			this.cart[id]['count'] -= 1
         },
-		slideImg(index){
+		slideImg(shopIndex){
+			// 參數shopIndex是商品的順序index
+			// 根據slideImgActive[shopIndex]回傳圖片容器的style
 			return {
-				marginLeft: `${-10*this.slideImgActive[index]}rem`
+				marginLeft: `${-10*this.slideImgActive[shopIndex]}rem`
 			}
 		},
-		imgPrev(index, last){
-			if(this.slideImgActive[index] === 0){
-				this.slideImgActive[index] = last - 1
+		imgPrev(shopIndex, imglast){
+			// 參數shopIndex是商品的順序index, imglast是小圖片的數量
+			if(this.slideImgActive[shopIndex] === 0){
+				this.slideImgActive[shopIndex] = imglast - 1
 			}else{
-				this.slideImgActive[index] -= 1
+				this.slideImgActive[shopIndex] -= 1
 			}
 		},
-		imgNext(index, last){
-			if(this.slideImgActive[index] === last-1){
-				this.slideImgActive[index] = 0
+		imgNext(shopIndex, imglast){
+			// 參數shopIndex是商品的順序index, imglast是小圖片的數量
+			if(this.slideImgActive[shopIndex] === imglast-1){
+				this.slideImgActive[shopIndex] = 0
 			}else{
-				this.slideImgActive[index] += 1
+				this.slideImgActive[shopIndex] += 1
 			}
 		}
     },
