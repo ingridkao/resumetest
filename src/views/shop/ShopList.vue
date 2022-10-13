@@ -6,11 +6,28 @@
 		<div v-if="load">Loading...</div>
 		<div  v-else class="shopList">
 			<div
-				v-for="item in listData"
+				v-for="(item, index) in listData"
 				:key="item.id"
 				class="shopCard"
 			>
-				<img :src="item.thumbnail" :alt="item.title">
+				<!-- <img :src="item.thumbnail" :alt="item.title"> -->
+				<div class="slideBox">
+					<button @click="imgPrev(index, item.images.length)">L</button>
+					<div class="imgContanier">
+						<div 
+							class="imgBox"
+							:style="slideImg(index)"
+						>
+							<img 
+								v-for="(imgItem, imgIndex) in item.images"
+								:key="imgIndex"
+								:src="imgItem" 
+								:alt="`${item.title}_${imgIndex}`"
+							/>
+						</div>
+					</div>
+					<button @click="imgNext(index, item.images.length)">R</button>
+				</div>
 				<router-link 
 					:to="{
 						name: 'shopInfo',
@@ -49,6 +66,7 @@ export default {
 		return {
 			load: false,
 			listData: [],
+			slideImgActive: [],
 			cart: {}
 		}
     },
@@ -69,8 +87,10 @@ export default {
 						this.cart[item.id] = {
 							name: item.title,
 							price: item.price,
-							count: 0
+							count: 0,
+							slide: 0
 						}
+						this.slideImgActive.push(0)
 					})
 				}
             })
@@ -87,7 +107,26 @@ export default {
         reduse(id){
 			if(this.cart[id]['count'] === 0)return
 			this.cart[id]['count'] -= 1
-        }
+        },
+		slideImg(index){
+			return {
+				marginLeft: `${-10*this.slideImgActive[index]}rem`
+			}
+		},
+		imgPrev(index, last){
+			if(this.slideImgActive[index] === 0){
+				this.slideImgActive[index] = last - 1
+			}else{
+				this.slideImgActive[index] -= 1
+			}
+		},
+		imgNext(index, last){
+			if(this.slideImgActive[index] === last-1){
+				this.slideImgActive[index] = 0
+			}else{
+				this.slideImgActive[index] += 1
+			}
+		}
     },
     mounted(){
         this.getListData()  
@@ -100,9 +139,35 @@ export default {
 	display: inline-flex;
 	.shopCard{
 		width: 30%;
-		img{
-			width: 100%;
+		margin-right: 1rem;
+		.slideBox{
+			position: relative;
+			display: inline-flex;
+			width: 13rem;
+			height: 8rem;
+			overflow: hidden;
+			button{
+				width: 1.5rem;
+				height: 100%;
+				&:last-child{position: absolute;right:0;}
+			}
+			.imgContanier{
+				overflow: hidden;
+				width: 100%;
+				.imgBox{
+					margin-left: 1.5rem;
+					width: 10rem;
+					height: 100%;
+					white-space:nowrap;
+					img{
+						width: 10rem;
+					}
+				}
+			}
 		}
+		// img{
+		// 	width: 100%;
+		// }
 	}
 }
 </style>
