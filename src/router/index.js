@@ -26,6 +26,8 @@ import ShopView from '@/views/shop/Index.vue'
 import ShopList from '@/views/shop/ShopList.vue'
 import ShopInfo from '@/views/shop/ShopInfo.vue'
 
+import Modal from '@/views/Modal.vue'
+
 export const BackRoute = [
   {
     path: '/login',
@@ -70,6 +72,12 @@ export const FrontRoute = [
         component: ShopInfo
       }
     ]
+  },
+  {
+    path: '/modal',
+    name: 'modal',
+    chName: '燈箱',
+    component: Modal
   },
   {
     path: '/calendar',
