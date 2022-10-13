@@ -18,12 +18,13 @@
 							class="imgBox"
 							:style="slideImg(index)"
 						>
-							<img 
+							<div
 								v-for="(imgItem, imgIndex) in item.images"
 								:key="imgIndex"
-								:src="imgItem" 
-								:alt="`${item.title}_${imgIndex}`"
-							/>
+								:style="{
+									backgroundImage: `url(${imgItem})`
+								}"
+							></div>
 						</div>
 					</div>
 					<button @click="imgNext(index, item.images.length)">R</button>
@@ -156,18 +157,19 @@ export default {
 				width: 100%;
 				.imgBox{
 					margin-left: 1.5rem;
-					width: 10rem;
 					height: 100%;
 					white-space:nowrap;
-					img{
+					>div{
+						display: inline-block;
 						width: 10rem;
+						height: 100%;
+						background-position: center;
+						background-repeat: no-repeat;
+						background-size: contain;
 					}
 				}
 			}
 		}
-		// img{
-		// 	width: 100%;
-		// }
 	}
 }
 </style>
