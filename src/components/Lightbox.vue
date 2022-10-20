@@ -3,18 +3,20 @@
         <div class="modal-mask" :style="modalStyle">
             <!--.self 只有觸發此 DOM 元素本身才會觸發 self 事件。-->
             <div class="modal-container" @click.self="toggleModal">
-                <div class="modal-body">
-                    <header>
-                        <slot name="header"></slot>
-                    </header>
-                    <hr>
-                    <main>
-                        <slot></slot>
-                    </main>
-                    <hr>
-                    <footer>
-                        <slot name="footer"></slot>
-                    </footer>
+                <div>
+                    <div class="modal-body">
+                        <header>
+                            <slot name="header"></slot>
+                        </header>
+                        <hr>
+                        <main>
+                            <slot></slot>
+                        </main>
+                        <hr>
+                        <footer>
+                            <slot name="footer"></slot>
+                        </footer>
+                    </div>
                 </div>
             </div>
         </div>

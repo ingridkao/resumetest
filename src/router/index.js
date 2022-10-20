@@ -11,6 +11,7 @@ import SlotView from '@/views/SlotView.vue'
 import CalendarView from '@/views/CalendarView.vue'
 import ScrollView from '@/views/ScrollView.vue'
 import AjaxView from '@/views/AjaxView.vue'
+import FilterView from '@/views/FilterView.vue'
 import TdxView from '@/views/TdxView.vue'
 import Tdx2View from '@/views/Tdx2View.vue'
 
@@ -96,6 +97,12 @@ export const FrontRoute = [
     name: 'ajax',
     chName: 'ajax的三種方法',
     component: AjaxView
+  },
+  {
+    path: '/filter',
+    name: 'filter',
+    chName: 'filter資料',
+    component: FilterView
   },
   {
     path: '/tdx',
