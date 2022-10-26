@@ -4,7 +4,7 @@
 			分頁
 			<ul>
 				<li v-if="currentPage !== 1" @click="triggerPage(currentPage-1)">prev</li>
-				<li v-if="currentPage > pageShowCount" @click="triggerPage(1)">首頁1</li>
+				<li v-if="showFirst" @click="triggerPage(1)">首頁1</li>
 				<li 
 					v-for="page in pagination" 
 					:key="page" 
@@ -35,18 +35,29 @@ export default {
 			//目前分頁
 			currentPage: 1,
 			//分頁一頁幾筆
-			perPage: 2,
+			perPage: 4,
 			//分頁呈現
 			pagination: [],
 			//總頁數
-			totalPages: 10,
+			totalPages: 4,
 			//頁數顯示幾格
-			pageShow: 3
+			pageShow: 4
 		}
 	}, 
 	computed: {
 		pageShowCount(){
-			return this.pageShow - 1
+			if(this.totalPages <= this.pageShow){
+				return this.totalPages - 1
+			}else{
+				return this.pageShow - 1
+			}
+		},
+		showFirst(){
+			if(this.totalPages <= this.pageShow){
+				return false
+			}else{
+				return this.currentPage > this.pageShowCount
+			}
 		}
 	},
 	methods:{
@@ -70,8 +81,8 @@ export default {
 		},
 		triggerPage(page){
 			this.currentPage = page
-			this.getSource()
-			// this.updatePage()
+			// this.getSource()
+			this.updatePage()
 		},
 		updatePage(){
 			let start = 1
@@ -80,7 +91,7 @@ export default {
 				start = this.currentPage - 1
 				end = start + this.pageShowCount
 			}
-			if(this.currentPage >= this.totalPages - 1){
+			if(this.totalPages > this.pageShowCount && this.currentPage >= this.totalPages - 1){
 				end = this.totalPages
 				start = end - this.pageShowCount
 			}
@@ -91,8 +102,8 @@ export default {
 		}
 	},
 	created() {
-		this.getSource()
-		// this.updatePage()
+		// this.getSource()
+		this.updatePage()
 	}
 }
 </script>
