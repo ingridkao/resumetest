@@ -13,6 +13,7 @@ import ScrollView from '@/views/ScrollView.vue'
 import AjaxView from '@/views/AjaxView.vue'
 import AjaxView2 from '@/views/AjaxView2.vue'
 import FilterView from '@/views/FilterView.vue'
+import PaginationView from '@/views/PaginationView.vue'
 import TdxView from '@/views/TdxView.vue'
 import Tdx2View from '@/views/Tdx2View.vue'
 
@@ -112,6 +113,12 @@ export const FrontRoute = [
     component: FilterView
   },
   {
+    path: '/pagination',
+    name: 'pagination',
+    chName: 'pagination分頁',
+    component: PaginationView
+  },
+  {
     path: '/tdx',
     name: 'tdx',
     chName: 'Tdx API取得並顯示在地圖',
@@ -126,7 +133,7 @@ export const FrontRoute = [
   {
     path: '/featrue',
     name: 'featrue',
-    chName: '功能',
+    chName: '放大鏡&載入圖片',
     component: Featrue,
     children: [
       { path: 'imageZoom', component: FeatrueImageZoom },
