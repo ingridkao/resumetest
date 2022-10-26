@@ -13,7 +13,6 @@ import ScrollView from '@/views/ScrollView.vue'
 import AjaxView from '@/views/AjaxView.vue'
 import AjaxView2 from '@/views/AjaxView2.vue'
 import FilterView from '@/views/FilterView.vue'
-import PaginationView from '@/views/PaginationView.vue'
 import TdxView from '@/views/TdxView.vue'
 import Tdx2View from '@/views/Tdx2View.vue'
 
@@ -23,6 +22,11 @@ import Featrue from '@/views/featrue/Index.vue'
 import FeatrueImageZoom from '@/views/featrue/ImageZoom.vue'
 import FeatrueImageImport from '@/views/featrue/ImageImport.vue'
 import FeatrueElement from '@/views/featrue/Element.vue'
+
+import Pagination from '@/views/pagination/Index.vue'
+import PaginationBasic from '@/views/pagination/Basic.vue'
+import PaginationAround from '@/views/pagination/Around.vue'
+import PaginationTop from '@/views/pagination/Top.vue'
 
 // import ShopView from '@/views/ShopView.vue'
 import ShopView from '@/views/shop/Index.vue'
@@ -116,7 +120,12 @@ export const FrontRoute = [
     path: '/pagination',
     name: 'pagination',
     chName: 'pagination分頁',
-    component: PaginationView
+    component: Pagination,
+    children: [
+      { path: 'basic', component: PaginationBasic },
+      { path: 'around', component: PaginationAround },
+      { path: 'top', component: PaginationTop }
+    ],
   },
   {
     path: '/tdx',

@@ -3,6 +3,8 @@
 		<div>
 			分頁
 			<ul>
+				<li v-if="currentPage !== 1" @click="triggerPage(currentPage-1)">prev</li>
+				<li v-if="currentPage > pageShowCount" @click="triggerPage(1)">首頁1</li>
 				<li 
 					v-for="page in pagination" 
 					:key="page" 
@@ -11,6 +13,8 @@
 				>
 					{{page}}
 				</li>
+				<li v-if="currentPage < totalPages - 1" @click="triggerPage(totalPages)">末頁{{totalPages}}</li>
+				<li v-if="currentPage !== totalPages" @click="triggerPage(currentPage+1)">next</li>
 			</ul>
 		</div>
 	</header>
@@ -31,21 +35,20 @@ export default {
 			//目前分頁
 			currentPage: 1,
 			//分頁一頁幾筆
-			perPage: 3,
+			perPage: 2,
 			//分頁呈現
 			pagination: [],
 			//總頁數
-			totalPages: 5
+			totalPages: 10,
+			//頁數顯示幾格
+			pageShow: 3
+		}
+	}, 
+	computed: {
+		pageShowCount(){
+			return this.pageShow - 1
 		}
 	},
-    computed: { 
-        goFirstShow() { 
-            return this.currentPage >= this.perPage
-        },
-        goLastShow() { 
-            return this.currentPage <= this.totalPages
-        }
-    }, 
 	methods:{
 		getSource(){
 			// 如果會重複getSource需要reset
@@ -68,16 +71,28 @@ export default {
 		triggerPage(page){
 			this.currentPage = page
 			this.getSource()
+			// this.updatePage()
 		},
 		updatePage(){
-			this.pagination = []
-			for (let item = 1; item <= this.totalPages; item++) {
-				this.pagination.push(item)
+			let start = 1
+            let end = start + this.pageShowCount
+			if(this.currentPage > this.pageShowCount){
+				start = this.currentPage - 1
+				end = start + this.pageShowCount
 			}
+			if(this.currentPage >= this.totalPages - 1){
+				end = this.totalPages
+				start = end - this.pageShowCount
+			}
+			this.pagination = []
+            for (let index = start; index <= end; index++) {
+                this.pagination.push(index)  
+            }
 		}
 	},
 	created() {
 		this.getSource()
+		// this.updatePage()
 	}
 }
 </script>
