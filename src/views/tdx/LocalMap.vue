@@ -1,7 +1,6 @@
 <template>
     <div>
         <div v-if="load">Load</div>
-        <!-- <p>{{target}}</p> -->
         <select v-model="target" @change="chnageSelect">
             <option value="">請選擇桃園景點</option>
             <option 
@@ -14,7 +13,6 @@
         </select>
         <hr>
         <div class="infoBox">
-            <!-- {{info.Position}} -->
             <div id="map"></div>
             <div class="info">
                 <template v-for="(item, keys) in info" :key="keys">
@@ -57,10 +55,6 @@ export default {
     },
     methods:{
         chnageSelect(){
-            // console.log(this.target);
-            // this.info = this.data.find(item=>{
-            //     return item.ScenicSpotID === this.target
-            // })
             this.info = this.data.find(item=> item.ScenicSpotID === this.target)
             const pos = this.info.Position
             if(!pos) return

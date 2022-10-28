@@ -13,8 +13,6 @@ import ScrollView from '@/views/ScrollView.vue'
 import AjaxView from '@/views/AjaxView.vue'
 import AjaxView2 from '@/views/AjaxView2.vue'
 import FilterView from '@/views/FilterView.vue'
-import TdxView from '@/views/TdxView.vue'
-import Tdx2View from '@/views/Tdx2View.vue'
 
 import NotFound from '@/views/NotFound.vue'
 
@@ -23,12 +21,6 @@ import FeatrueImageZoom from '@/views/featrue/ImageZoom.vue'
 import FeatrueImageImport from '@/views/featrue/ImageImport.vue'
 import FeatrueElement from '@/views/featrue/Element.vue'
 
-import Pagination from '@/views/pagination/Index.vue'
-import PaginationBasic from '@/views/pagination/Basic.vue'
-import PaginationAround from '@/views/pagination/Around.vue'
-import PaginationTop from '@/views/pagination/Top.vue'
-
-// import ShopView from '@/views/ShopView.vue'
 import ShopView from '@/views/shop/Index.vue'
 import ShopList from '@/views/shop/ShopList.vue'
 import ShopInfo from '@/views/shop/ShopInfo.vue'
@@ -120,24 +112,24 @@ export const FrontRoute = [
     path: '/pagination',
     name: 'pagination',
     chName: 'pagination分頁',
-    component: Pagination,
+    component: () => import('@/views/tdx/Index.vue'),
     children: [
-      { path: 'basic', component: PaginationBasic },
-      { path: 'around', component: PaginationAround },
-      { path: 'top', component: PaginationTop }
+      { path: 'basic', component: () => import('@/views/pagination/Basic.vue') },
+      { path: 'around', component: () => import('@/views/pagination/Around.vue') },
+      { path: 'top', component: () => import('@/views/pagination/Top.vue') },
     ],
   },
   {
     path: '/tdx',
     name: 'tdx',
-    chName: 'Tdx API取得並顯示在地圖',
-    component: TdxView
-  },
-  {
-    path: '/tdx2',
-    name: 'tdx2',
-    chName: 'Tdx API取得並顯示在地圖2',
-    component: Tdx2View
+    chName: 'Tdx API',
+    component: () => import('@/views/tdx/Index.vue'),
+    children: [
+      { path: 'local', component: () => import('@/views/tdx/Local.vue') },
+      { path: 'localMap', component: () => import('@/views/tdx/LocalMap.vue') },
+      { path: 'token', component: () => import('@/views/tdx/Token.vue') },
+      { path: 'map', component: () => import('@/views/tdx/Map.vue') },
+    ],
   },
   {
     path: '/featrue',

@@ -1,5 +1,6 @@
 <template>
     <p>資料來源：https://www.travel.taipei/open-api/swagger/ui/index#/Attractions/Attractions_All</p>
+    <p>要header所以cros-anywhere沒辦法使用，header帶不過去</p>
     <button @click="nexPage">Next page</button>
     {{travelData}}
 </template>
@@ -30,6 +31,7 @@ export default {
         },
         getData3(){
             this.load= true
+            // this.axios.get('https://cors-anywhere.herokuapp.com/https://www.travel.taipei/open-api/zh-tw/Attractions/All', {
             this.axios.get('/travelapi/zh-tw/Attractions/All', {
                 headers: {
                     "accept": "application/json"

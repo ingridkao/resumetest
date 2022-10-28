@@ -5,14 +5,6 @@
     </select>
 
     <div class="wrap">
-        <!-- 由於object順序沒有固定，所以這個寫法沒辦法控制內容順序 -->
-        <!-- <div class="list" v-for="(item, key) in info" :key="item.location">
-            <p v-if="key=='time'">時間{{item}}</p>
-            <p v-if="key=='car'">車號{{item}}</p>
-            <p v-if="key=='linid'">{{item}}</p>
-            <span v-if="key=='x'">座標X{{item}}</span>
-            <span v-if="key=='y'">座標Y{{item}}</span>
-        </div> -->
         <div class="list" v-if="Object.keys(info).length > 0">
             <p v-for="(item) in displayP" :key="item.index">
                 {{item.name}}: {{info[item.index]}}
@@ -63,19 +55,9 @@ export default {
             L.tileLayer('https://tile.openstreetmap.org/{z}/{x}/{y}.png', {
                 attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
             }).addTo(this.leafletMap);
-            // L.marker([51.5, -0.09],{ icon: blackIcon }).addTo(this.leafletMap)
-            // .bindPopup('A pretty CSS3 popup.<br> Easily customizable.')
-            // .openPopup();
-            // L.marker([51.5, -0.09],{ icon: blackIcon }).addTo(this.leafletMap)
         },
         change(sel){
             this.info = this.data.find(item=>item.location===this.sel)
-
-            //
-            // let index = this.data.findIndex(item=>item.location==this.sel)
-            // console.log(index)
-            // console.log("-->data",this.info.x)
-            
             if(this.info){
                 //L.map('map')這個不能在初始一次
                 // this.leafletMap = L.map('map').setView([`${this.info.x}`,`${this.info.y}`], 13);
