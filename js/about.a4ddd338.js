@@ -1,0 +1,2 @@
+"use strict";(self["webpackChunkresume202209"]=self["webpackChunkresume202209"]||[]).push([[443],{1111:function(e,t,n){n.r(t),n.d(t,{default:function(){return l}});var r=n(3396);const u={class:"about"},s=(0,r._)("h1",null,"This is an about page",-1),a=(0,r._)("a",{href:"https://github.com/ingridkao/resumetest",target:"_blank"},"這個專案的Git",-1),i=[s,a];function c(e,t){return(0,r.wg)(),(0,r.iD)("div",u,i)}var o=n(89);const h={},f=(0,o.Z)(h,[["render",c]]);var l=f}}]);
+//# sourceMappingURL=about.a4ddd338.js.map
